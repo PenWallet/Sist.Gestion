@@ -1,0 +1,15 @@
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\bin\Debug\02 - HelloWorld WPF.exe.config
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\bin\Debug\02 - HelloWorld WPF.exe
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\bin\Debug\02 - HelloWorld WPF.pdb
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF.csprojAssemblyReference.cache
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\MainWindow.g.cs
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\App.g.cs
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF_MarkupCompile.cache
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF_MarkupCompile.lref
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\MainWindow.baml
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF.g.resources
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\_02___HelloWorld_WPF.Properties.Resources.resources
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF.csproj.GenerateResource.cache
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF.csproj.CoreCompileInputs.cache
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF.exe
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\Hello World WebForms\02 - HelloWorld WPF\02 - HelloWorld WPF\obj\Debug\02 - HelloWorld WPF.pdb

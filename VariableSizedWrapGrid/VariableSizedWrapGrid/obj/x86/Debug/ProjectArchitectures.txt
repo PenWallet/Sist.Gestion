@@ -1,0 +1,1 @@
+C:\Users\ofunes\Desktop\GitHub\Sistemas de Gestion\VariableSizedWrapGrid\VariableSizedWrapGrid\VariableSizedWrapGrid.csproj;x86
