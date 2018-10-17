@@ -1,0 +1,39 @@
+﻿@using _03___MVC_Pasar_datos_a_vista.Models
+@model List<ClsPersona>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListadoPersona</title>
+</head>
+<body>
+    <table style="width:50%">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha nacimiento</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+        </tr>
+        @foreach (var persona in Model)
+        {
+        <tr>
+            <td>@persona.idPersona</td>
+            <td>@persona.nombre</td>
+            <td>@persona.apellidos</td>
+            <td>@persona.fechaNac</td>
+            <td>@persona.direccion</td>
+            <td>@persona.telefono</td>
+        </tr>
+        }
+    </table>
+    
+</body>
+</html>

@@ -9,10 +9,12 @@ namespace _03___MVC_Pasar_datos_a_vista.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
         public ActionResult Index()
         {
+            //Declaración de variables
             ClsPersona person = new ClsPersona();
+
+            //Asignamos los valores al objeto Persona
             person.nombre = "Federico";
             person.apellidos = "Garcia Lorca";
             person.idPersona = 1;
@@ -20,39 +22,55 @@ namespace _03___MVC_Pasar_datos_a_vista.Controllers
             person.direccion = "c/ Falsa 123";
             person.telefono = "999666999";
 
+            //Enviamos con el ViewData el saludo
             ViewData["Saludo"] = saludo();
+            //Y con el ViewBag la fecha de hoy en formato largo
             ViewBag.Fecha = queDiaEs();
 
+            //Finalmente, devolvemos a la vista la clase Persona
             return View(person);
+        }
+
+        public ActionResult ListadoPersona()
+        {
+            ClsListadoPersona objListadoPersona = new ClsListadoPersona();
+            List<ClsPersona> lista = objListadoPersona.ListadoPersonas();
+
+            return View(lista);
         }
 
         /// <summary>
         /// Procedimiento que devuelve un string dependiendo de qué hora es
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String con el saludo correspondiente</returns>
         public string saludo()
         {
+            //Declaración de variables
             string s;
+            int hora = DateTime.Now.Hour;
 
-            if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 12)
+            //Dependiendo de la hora que sea, se le asigna a 's' un valor diferente
+            if (hora >= 7 && hora <= 12)
                 s = "¡Buenos días!";
-            else
-                if (DateTime.Now.Hour >= 13 && DateTime.Now.Hour <= 20)
+            else if (hora >= 13 && hora <= 20)
                 s = "¡Buenas tardes!";
             else
                 s = "¡Buenas noches!";
 
+            //Se devuelve el saludo
             return s;
         }
 
         /// <summary>
         /// Procedimiento que devuelve un string con la fecha actual
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String con la fecha actual en formato largo</returns>
         public string queDiaEs()
         {
+            //Declaración de variables
             DateTime fechaDT = DateTime.Now;
 
+            //Devolvemos la fecha en modo largo
             return fechaDT.ToLongDateString();
         }
     }
