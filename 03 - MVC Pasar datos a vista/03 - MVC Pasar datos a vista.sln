@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03 - MVC Pasar datos a vista", "03 - MVC Pasar datos a vista\03 - MVC Pasar datos a vista.csproj", "{9BC00E99-1B21-4BA7-9A12-A0417EF3B266}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BC00E99-1B21-4BA7-9A12-A0417EF3B266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC00E99-1B21-4BA7-9A12-A0417EF3B266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC00E99-1B21-4BA7-9A12-A0417EF3B266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC00E99-1B21-4BA7-9A12-A0417EF3B266}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77FB269E-E8D9-4F63-9485-602EDD88CFE0}
+	EndGlobalSection
+EndGlobal

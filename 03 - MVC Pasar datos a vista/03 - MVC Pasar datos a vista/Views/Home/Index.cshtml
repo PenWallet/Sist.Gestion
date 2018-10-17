@@ -1,0 +1,30 @@
+﻿@model _03___MVC_Pasar_datos_a_vista.Models.ClsPersona
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2>@ViewData["Saludo"]</h2>
+    <p>La fecha actual es: @ViewBag.Fecha</p> <br/>
+    <p>Estos son los datos de la persona:</p>
+    <ol>
+        <li>Nombre: @Model.nombre</li>
+        <li>Apellidos: @Model.apellidos</li>
+        <li>FechaNac: @Model.fechaNac</li>
+        <li>Dirección: @Model.direccion</li>
+        <li>Teléfono: @Model.telefono</li>
+    </ol>
+
+
+
+
+</body>
+</html>
