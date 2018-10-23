@@ -1,0 +1,25 @@
+﻿@model _04___MVC_Pasar_datos_a_controlador.Models.ClsPersona
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+</head>
+<body>
+    <h1>Modifica los datos:</h1>
+    <form action="" method="post">
+        Nombre: <input type="text" name="nombre" value="@Model.nombre" /><br />
+        Apellidos: @Html.TextBox("apellidos", Model.apellidos)<br />
+        Fecha de nacimiento: @Html.TextBoxFor(Model => Model.fechaNac)<br />
+        Dirección: @Html.TextBoxFor(Model => Model.direccion)<br />
+        Teléfono: @Html.TextBoxFor(Model => Model.telefono)<br />
+        <input type="submit" value="Modificar"/>
+    </form>
+</body>
+</html>
