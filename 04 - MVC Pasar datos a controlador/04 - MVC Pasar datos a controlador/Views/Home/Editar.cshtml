@@ -1,4 +1,4 @@
-﻿@model _04___MVC_Pasar_datos_a_controlador.Models.ClsPersona
+﻿@model _04___MVC_Pasar_datos_a_controlador.Models.ViewModels.ClsPersonaConListadoDepartamentos
 
 @{
     Layout = null;
@@ -19,7 +19,9 @@
         Fecha de nacimiento: @Html.TextBoxFor(Model => Model.fechaNac)<br />
         Dirección: @Html.TextBoxFor(Model => Model.direccion)<br />
         Teléfono: @Html.TextBoxFor(Model => Model.telefono)<br />
-        <input type="submit" value="Modificar"/>
+        Departamento: @Html.DropDownListFor(x => Model.idDepartamento, new SelectList(Model.listaDepartamentos, "idDepartamento", "nombreDepartamento"))
+
+        <input type="submit" value="Modificar" />
     </form>
 </body>
 </html>

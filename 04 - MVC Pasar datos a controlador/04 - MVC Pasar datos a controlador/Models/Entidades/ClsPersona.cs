@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace _04___MVC_Pasar_datos_a_controlador.Models
+namespace _04___MVC_Pasar_datos_a_controlador.Models.Entidades
 {
     public class ClsPersona
     {
@@ -15,7 +15,7 @@ namespace _04___MVC_Pasar_datos_a_controlador.Models
         #endregion
 
         #region Constructor con parámetros
-        public ClsPersona(int id, string nombre, string apellidos, DateTime fechaNac, string direccion, string telefono)
+        public ClsPersona(int id, string nombre, string apellidos, DateTime fechaNac, string direccion, string telefono, int idDepartamento)
         {
             this.idPersona = id;
             this.nombre = nombre;
@@ -23,10 +23,12 @@ namespace _04___MVC_Pasar_datos_a_controlador.Models
             this.fechaNac = fechaNac;
             this.direccion = direccion;
             this.telefono = telefono;
+            this.idDepartamento = idDepartamento;
         }
         #endregion
 
         #region "Atributos"
+        public int idDepartamento { get; set; }
         public int idPersona { get; set; }
         public string nombre { get; set; }
         public string apellidos { get; set; }

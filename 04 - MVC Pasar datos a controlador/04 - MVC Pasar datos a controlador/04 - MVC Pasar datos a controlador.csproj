@@ -109,7 +109,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClsPersona.cs" />
+    <Compile Include="Models\DAL\ClsDatos.cs" />
+    <Compile Include="Models\Entidades\ClsDepartamento.cs" />
+    <Compile Include="Models\Entidades\ClsPersona.cs" />
+    <Compile Include="Models\DAL\ClsListadoDepartamentos.cs" />
+    <Compile Include="Models\ViewModels\ClsPersonaConListadoDepartamentos.cs" />
+    <Compile Include="Models\ViewModels\ClsPersonaConNombreDepartamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
