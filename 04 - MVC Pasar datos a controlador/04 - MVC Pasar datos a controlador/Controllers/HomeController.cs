@@ -38,7 +38,7 @@ namespace _04___MVC_Pasar_datos_a_controlador.Controllers
         public ActionResult PersonaModificada(ClsPersonaConNombreDepartamento p1)
         {
             return View(p1);
-            /*ClsPersona p2 = (ClsPersona)TempData["persona"];
+           /* ClsPersona p2 = (ClsPersona)TempData["persona"];
             return View(p2);*/
         }
 

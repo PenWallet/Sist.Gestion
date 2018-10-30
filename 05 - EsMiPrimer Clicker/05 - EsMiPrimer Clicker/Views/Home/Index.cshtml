@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @if ((bool)ViewData["esMiPrimeraVez"])
+        {
+            <p>Bienvenido por primera vez</p>
+        }
+        else
+        {
+            <p>Hola de nuevo</p>
+            <p>Has entrado @ViewData["contador"] veces</p>
+        }
+
+        @Html.ActionLink("Volver a la página", "Index", "Home", new { esMiPrimeraVez = false, contador = ViewData["contador"] }, null)
+    </div>
+</body>
+</html>
