@@ -70,5 +70,23 @@ namespace _07_CRUDPersonas_UI.Controllers
         {
             return View();
         }
+
+        [HttpPost, ActionName("Create")]
+        public ActionResult CreatePost(ClsPersona p1)
+        {
+            int filas;
+            List<ClsPersona> lista = null;
+            try
+            {
+                filas = ClsManejadoraPersona_BL.CrearPersona_BL(p1);
+                ViewData["InfoEstado"] = "Se han creado " + filas + " filas";
+
+                //Volvemos a sacar la lista de personas actualizada para pasársela a la vista Listado
+                lista = ClsListadoPersonas_BL.listadoCompletoPersonas_BL();
+            }
+            catch (Exception e) { ViewData["InfoEstado"] = "No se pudo crear"; }
+
+            return View("Listado", lista);
+        }
     }
 }

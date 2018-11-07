@@ -23,5 +23,12 @@ namespace BL.Manejadoras
 
             return filas;
         }
+
+        public static int CrearPersona_BL(ClsPersona p1)
+        {
+            int filas = ClsManejadoraPersona_DAL.CrearPersona_DAL(p1);
+
+            return filas;
+        }
     }
 }

@@ -118,5 +118,48 @@ namespace DAL.Manejadoras
 
             return filas;
         }
+
+        public static int CrearPersona_DAL(ClsPersona p1)
+        {
+            //Variables
+            SqlConnection conexion = null;
+            SqlCommand miComando = new SqlCommand();
+            clsMyConnection gestConexion = new clsMyConnection();
+            int filas = 0;
+
+
+            try //Try no obligatorio porque está controlado en la clase clsMyConnection
+            {
+                //Obtener conexión abierta
+                conexion = gestConexion.getConnection();
+
+                //Definir los parámetros del comando
+                miComando.CommandText = "INSERT INTO Personas(nombrePersona, apellidosPersona, fechaNacimiento, telefono, direccion, IDDepartamento)" +
+                    "VALUES (@nombre, @apellidos, @fecha, @telefono, @direccion, @idDep)";
+
+                //Creamos los parámetros
+                miComando.Parameters.Add("@nombre", System.Data.SqlDbType.VarChar).Value = p1.nombre;
+                miComando.Parameters.Add("@apellidos", System.Data.SqlDbType.VarChar).Value = p1.apellidos;
+                miComando.Parameters.Add("@fecha", System.Data.SqlDbType.Date).Value = p1.fechaNac;
+                miComando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = p1.telefono;
+                miComando.Parameters.Add("@direccion", System.Data.SqlDbType.VarChar).Value = p1.direccion;
+                miComando.Parameters.Add("@idDep", System.Data.SqlDbType.Int).Value = p1.idDepartamento;
+
+                //Definir la conexión del comando
+                miComando.Connection = conexion;
+
+                //Ejecutamos
+                filas = miComando.ExecuteNonQuery();
+
+
+            }
+            catch (SqlException e) { throw e; }
+            finally
+            {
+                gestConexion.closeConnection(ref conexion);
+            }
+
+            return filas;
+        }
     }
 }
