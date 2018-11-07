@@ -27,7 +27,7 @@ namespace _06___Base_de_datos.Controllers
 
             try
             {
-                miConexion.ConnectionString = "server=pennypersonas.database.windows.net;database=PersonasDB;uid=PenWallet;pwd=Puton#123;";
+                miConexion.ConnectionString = "server=pennypersonas.database.windows.net;database=PersonasDB;uid=Prueba;pwd=123qweasd!;";
                 miConexion.Open();
 
                 ViewData["Estado"] = miConexion.State;
@@ -49,7 +49,7 @@ namespace _06___Base_de_datos.Controllers
 
             try
             {
-                miConexion.ConnectionString = "server=pennypersonas.database.windows.net;database=PersonasDB;uid=PenWallet;pwd=Puton#123;";
+                miConexion.ConnectionString = "server=pennypersonas.database.windows.net;database=PersonasDB;uid=Prueba;pwd=123qweasd!";
                 miConexion.Open();
 
                 miComando.CommandText = "SELECT * FROM Personas";

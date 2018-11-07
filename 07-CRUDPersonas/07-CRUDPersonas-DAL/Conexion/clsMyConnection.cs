@@ -20,7 +20,7 @@ using System.Data.SqlClient;
 //
 
 
-namespace _07_CRUD_Personas_DAL.Conexion
+namespace DAL.Listados
 {
     public class clsMyConnection
     {
@@ -35,12 +35,11 @@ namespace _07_CRUD_Personas_DAL.Conexion
         public clsMyConnection()
         {
             // this.server = "(local)";
-            this.server = "iesnervion.database.windows.net";
+            this.server = "pennypersonas.database.windows.net";
 
-            this.dataBase = "WPFSample";
-            this.user = "prueba";
-            //this.pass = "123";
-            this.pass = "iesnervion123.";
+            this.dataBase = "PersonasDB";
+            this.user = "Prueba";
+            this.pass = "123qweasd!";
 
         }
         //Con parámetros por si quisiera cambiar las conexiones

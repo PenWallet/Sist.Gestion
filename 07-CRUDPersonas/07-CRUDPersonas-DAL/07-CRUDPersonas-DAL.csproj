@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Conexion\clsMyConnection.cs" />
-    <Compile Include="Listados\ClsListadoPersonas.cs" />
+    <Compile Include="Listados\ClsListadoPersonas_DAL.cs" />
+    <Compile Include="Manejadoras\ClsManejadoraPersona_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,8 +52,6 @@
       <Name>07-CRUDPersonas-Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Manejadoras\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
