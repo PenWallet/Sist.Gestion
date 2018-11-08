@@ -61,9 +61,35 @@ namespace _07_CRUDPersonas_UI.Controllers
             return View("Listado", lista);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            ClsPersona p1 = new ClsPersona();
+
+            try
+            {
+                p1 = ClsManejadoraPersona_BL.PersonaPorID_BL(id);
+            }
+            catch (Exception e) { ViewData["Error"] = "Error no controlado"; }
+
+            return View(p1);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public ActionResult EditPost(ClsPersona p1)
+        {
+            int filas;
+            List<ClsPersona> lista = null;
+            try
+            {
+                filas = ClsManejadoraPersona_BL.ActualizarPersona_BL(p1);
+                ViewData["InfoEstado"] = "Se han actualizado " + filas + " filas";
+
+                //Volvemos a sacar la lista de personas actualizada para pasársela a la vista Listado
+                lista = ClsListadoPersonas_BL.listadoCompletoPersonas_BL();
+            }
+            catch (Exception e) { ViewData["InfoEstado"] = "No se pudo actualizar"; }
+
+            return View("Listado", lista);
         }
 
         public ActionResult Create()

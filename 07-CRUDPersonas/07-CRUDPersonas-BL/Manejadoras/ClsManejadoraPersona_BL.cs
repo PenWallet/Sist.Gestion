@@ -30,5 +30,12 @@ namespace BL.Manejadoras
 
             return filas;
         }
+
+        public static int ActualizarPersona_BL(ClsPersona p1)
+        {
+            int filas = ClsManejadoraPersona_DAL.ActualizarPersona_DAL(p1);
+
+            return filas;
+        }
     }
 }
