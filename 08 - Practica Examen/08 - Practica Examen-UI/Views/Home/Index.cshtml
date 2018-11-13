@@ -1,4 +1,4 @@
-﻿@model ViewModels.IndexViewModel
+﻿@model UI.ViewModels.IndexViewModel
 
 @{
     Layout = null;
@@ -14,13 +14,13 @@
 <body>
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
-        @Html.DropDownListFor(x => x.idDepartamento, new SelectList(Model.listaDepartamentos, "id", "nombre"))
+        @Html.DropDownListFor(x => x.idDepartamento, new SelectList(Model.listaDepartamentos, "id", "nombre"), "Elige un departamento")
 
-        <input type="submit" value="Upload" />
+        <input type="submit" value="Buscar" />
     }
 
 
-    @if (Model.listaDepartamentos.Count != 0)
+    @if (Model.listaPersonasPorDepartamento.Count != 0)
     {
         <table class="table">
             <tr>
@@ -32,9 +32,6 @@
                 </th>
                 <th>
                     Telefono
-                </th>
-                <th>
-                    Departamento
                 </th>
                 <th></th>
             </tr>

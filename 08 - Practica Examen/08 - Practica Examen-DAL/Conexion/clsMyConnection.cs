@@ -20,7 +20,7 @@ using System.Data.SqlClient;
 //
 
 
-namespace DAL.Listados
+namespace DAL.Conexion
 {
     public class clsMyConnection
     {

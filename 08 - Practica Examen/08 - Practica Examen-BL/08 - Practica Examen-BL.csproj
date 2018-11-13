@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listados\ClsListadoDepartamentos_BL.cs" />
+    <Compile Include="Listados\ClsListadoPersonas_BL.cs" />
+    <Compile Include="Manejadoras\ClsManejadoraDepartamento_BL.cs" />
+    <Compile Include="Manejadoras\ClsManejadoraPersona_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Listados\" />
-    <Folder Include="Manejadoras\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\08 - Practica Examen-DAL\08 - Practica Examen-DAL.csproj">
       <Project>{5a953fcd-d862-4a09-b88d-973be4bc4af2}</Project>

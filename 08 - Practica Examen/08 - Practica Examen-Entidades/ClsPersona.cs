@@ -19,7 +19,7 @@ namespace Entidades
     public class ClsPersona
     {
         #region Atributos
-        public int id { get; }
+        public int id { get; set;  }
         public int idDepartamento { get; set; }
         public string nombre { get; set; }
         public string apellidos { get; set; }
@@ -34,6 +34,15 @@ namespace Entidades
             this.nombre = nombre;
             this.apellidos = apellidos;
             this.telefono = telefono;
+        }
+
+        public ClsPersona()
+        {
+            this.id = 0;
+            this.idDepartamento = 0;
+            this.nombre = "";
+            this.apellidos = "";
+            this.telefono = "";
         }
         #endregion
     }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Entidades;
+using BL.Listados;
 
-namespace ViewModels
+
+namespace UI.ViewModels
 {
     public class IndexViewModel
     {
@@ -15,16 +17,18 @@ namespace ViewModels
         #endregion
 
         #region Constructores
-        public IndexViewModel(List<ClsPersona> lPersonas, List<ClsDepartamento> lDepartamentos)
+        public IndexViewModel(List<ClsPersona> lPersonas, int idDep)
         {
             listaPersonasPorDepartamento = lPersonas;
-            listaDepartamentos = lDepartamentos;
-            idDepartamento = 0;
+            listaDepartamentos = ClsListadoDepartamentos_BL.listadoCompletoDepartamentos_BL();
+            idDepartamento = idDep;
         }
 
         public IndexViewModel()
         {
-            //listaDepartamentos = 
+            listaPersonasPorDepartamento = new List<ClsPersona>();
+            listaDepartamentos = ClsListadoDepartamentos_BL.listadoCompletoDepartamentos_BL();
+            idDepartamento = 0;
         }
         #endregion  
 

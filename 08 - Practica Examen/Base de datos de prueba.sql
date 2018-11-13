@@ -42,4 +42,4 @@ VALUES
 --Usuarios
 CREATE LOGIN PruebaExamen with password = '123qweasd!', default_database=PruebaExamen
 GO
-CREATE USER PruebaExamen FOR LOGIN PruebaExamen GRANT INSERT, UPDATE, DELETE, EXECUTE TO prueba
+CREATE USER PruebaExamen FOR LOGIN PruebaExamen GRANT INSERT, UPDATE, DELETE, EXECUTE TO PruebaExamen

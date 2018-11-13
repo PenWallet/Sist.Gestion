@@ -42,12 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\clsMyConnection.cs" />
+    <Compile Include="Listados\ClsListadoDepartamentos_DAL.cs" />
+    <Compile Include="Listados\ClsListadoPersonas_DAL.cs" />
+    <Compile Include="Manejadoras\ClsManejadoraPersona_DAL.cs" />
+    <Compile Include="Manejadoras\ClsManejadoraDepartamento_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Listados\" />
-    <Folder Include="Manejadoras\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\08 - Practica Examen-Entidades\08 - Practica Examen-Entidades.csproj">
       <Project>{5c2ad9d1-e80a-4488-a465-36b126d3b437}</Project>
