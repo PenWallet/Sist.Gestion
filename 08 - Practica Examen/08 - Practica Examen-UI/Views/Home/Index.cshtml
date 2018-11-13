@@ -1,0 +1,62 @@
+﻿@model ViewModels.IndexViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.DropDownListFor(x => x.idDepartamento, new SelectList(Model.listaDepartamentos, "id", "nombre"))
+
+        <input type="submit" value="Upload" />
+    }
+
+
+    @if (Model.listaDepartamentos.Count != 0)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellidos
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+                    Departamento
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.listaPersonasPorDepartamento)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.ActionLink("Cambiar Teléfono", "CambiarTelefono", new { id = item.id })
+                </td>
+            </tr>
+            }
+        </table>
+    }
+</body>
+</html>
