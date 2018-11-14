@@ -20,7 +20,7 @@ using System.Data.SqlClient;
 //
 
 
-namespace DAL.Listados
+namespace DAL.Conexion
 {
     public class clsMyConnection
     {
@@ -36,10 +36,9 @@ namespace DAL.Listados
         {
             // this.server = "(local)";
             this.server = "localhost";
-
-            this.dataBase = "PersonasDB";
-            this.user = "Prueba";
-            this.pass = "123qweasd!";
+            this.dataBase = "lol";
+            this.user = "prueba2";
+            this.pass = "123";
 
         }
         //Con parámetros por si quisiera cambiar las conexiones

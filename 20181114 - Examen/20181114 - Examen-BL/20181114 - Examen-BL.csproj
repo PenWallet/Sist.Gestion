@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listados\ClsListadoCampeones_BL.cs" />
+    <Compile Include="Listados\ClsListadoCategorias_BL.cs" />
+    <Compile Include="Manejadoras\ClsManejadoraCampeones_BL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +56,6 @@
       <Name>20181114 - Examen-Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Listados\" />
-    <Folder Include="Manejadoras\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,119 @@
+﻿@model Models.ViewModels.IndexViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.DropDownListFor(x => Model.IDCampeonElegido, new SelectList(Model.listadoCampeones, "ID", "nombre"), "Elige un campeón")
+
+        <input type="submit" value="Editar" />
+
+        <!-- Entra aquí solo si la ID del campeón elegido (es decir, la ID del DropDownList) es distinta de 0-->
+        @if (Model.IDCampeonElegido != 0)
+        {
+            <img src="~/Imagenes/@Model.rutaImagen"/>
+        
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Cambia los datos de @Model.campeonElegido.nombre</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.campeonElegido.ID)
+                @Html.HiddenFor(model => model.IDCampeonElegido)
+                @Html.HiddenFor(model => model.rutaImagen)
+                @Html.HiddenFor(model => model.campeonElegido.nombre)
+
+                <div class="form-group">
+                    Alias:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.alias, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.alias, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Vida:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.vida, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.vida, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Regeneración:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.regeneracion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.regeneracion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Daño:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.danno, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.danno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Armadura:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.armadura, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.armadura, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Velocidad de ataque:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.velAtaque, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.velAtaque, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Resistencia:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.resistencia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.resistencia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Velocidad de movimiento:
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campeonElegido.velMovimiento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.campeonElegido.velMovimiento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Categoría:
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => Model.campeonElegido.IDCategoria, new SelectList(Model.listadoCategorias, "ID", "nombre"))
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    @ViewData["Mensaje"]
+</body>
+</html>
