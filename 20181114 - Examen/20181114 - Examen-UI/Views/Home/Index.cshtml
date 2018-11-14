@@ -19,11 +19,12 @@
         <input type="submit" value="Editar" />
 
         <!-- Entra aquí solo si la ID del campeón elegido (es decir, la ID del DropDownList) es distinta de 0-->
-        @if (Model.IDCampeonElegido != 0)
+        if (Model.IDCampeonElegido != 0)
         {
-            <img src="~/Imagenes/@Model.rutaImagen"/>
-        
-                @Html.AntiForgeryToken()
+            <!--<img src="~/Imagenes/@Model.rutaImagen"/>-->
+
+            <img src="~/Imagenes/@(Model.campeonElegido.nombre).png"/>
+                  @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
                 <h4>Cambia los datos de @Model.campeonElegido.nombre</h4>
