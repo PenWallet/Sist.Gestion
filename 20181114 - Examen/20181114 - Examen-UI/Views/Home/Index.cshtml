@@ -16,7 +16,7 @@
     {
         @Html.DropDownListFor(x => Model.IDCampeonElegido, new SelectList(Model.listadoCampeones, "ID", "nombre"), "Elige un campeón")
 
-        <input type="submit" value="Editar" />
+        <input type="submit" value="Editar" name="valorBoton" />
 
         <!-- Entra aquí solo si la ID del campeón elegido (es decir, la ID del DropDownList) es distinta de 0-->
         if (Model.IDCampeonElegido != 0)
@@ -108,7 +108,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Guardar" class="btn btn-default" />
+                        <input type="submit" value="Guardar" class="btn btn-default" name="valorBoton"/>
                     </div>
                 </div>
             </div>

@@ -20,13 +20,13 @@ namespace _20181114___Examen_UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(IndexViewModel vm)
+        public ActionResult Index(IndexViewModel vm, string valorBoton)
         {
             int filas;
 
             //Si la ID que se ha elegido en el DropDownList no es la misma que la que está
             //guardada en el campeón elegido, entonces es que se ha cambiado el personaje en el DropDownList
-            if(vm.IDCampeonElegido != vm.campeonElegido.ID)
+            if(valorBoton.Equals("Editar")/*vm.IDCampeonElegido != vm.campeonElegido.ID*/)
             {
                 //Busca el campeón por la ID nueva, para poder mostrarlo y cambiar sus datos
                 vm.campeonElegido = ClsManejadoraCampeones_BL.CampeonPorID_BL(vm.IDCampeonElegido);
