@@ -106,6 +106,7 @@
     <Content Include="Views\Personas\Delete.cshtml" />
     <Content Include="Views\Personas\Create.cshtml" />
     <Content Include="Views\Personas\Edit.cshtml" />
+    <None Include="Properties\PublishProfiles\CRUDPennyPersonas - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
