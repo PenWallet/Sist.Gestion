@@ -39,7 +39,7 @@ namespace _09___ApiRESTPersonas_API.Controllers
         /// <returns>bool</returns>
         public bool Post([FromBody]ClsPersona persona)
         {
-            return ClsManejadoraPersona_BL.CrearPersona_BL(persona) == 1 ? true : false;
+            return ClsManejadoraPersona_BL.CrearPersona_BL(persona) == 1;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace _09___ApiRESTPersonas_API.Controllers
         /// <returns>bool</returns>
         public bool Delete(int id)
         {
-            return ClsManejadoraPersona_BL.BorrarPorID_BL(id) == 1 ? true : false;
+            return ClsManejadoraPersona_BL.BorrarPorID_BL(id) == 1;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace _09___ApiRESTPersonas_API.Controllers
         /// <returns>bool</returns>
         public bool Put([FromBody]ClsPersona persona)
         {
-            return ClsManejadoraPersona_BL.ActualizarPersona_BL(persona) == 1 ? true : false;
+            return ClsManejadoraPersona_BL.ActualizarPersona_BL(persona) == 1;
         }
     }
 }
