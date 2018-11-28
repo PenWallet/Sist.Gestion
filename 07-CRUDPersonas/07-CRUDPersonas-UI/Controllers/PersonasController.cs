@@ -77,19 +77,26 @@ namespace _07_CRUDPersonas_UI.Controllers
         [HttpPost, ActionName("Edit")]
         public ActionResult EditPost(ClsPersona p1)
         {
-            int filas;
-            List<ClsPersona> lista = null;
-            try
+            if(ModelState.IsValid)
             {
-                filas = ClsManejadoraPersona_BL.ActualizarPersona_BL(p1);
-                ViewData["InfoEstado"] = "Se han actualizado " + filas + " filas";
+                int filas;
+                List<ClsPersona> lista = null;
+                try
+                {
+                    filas = ClsManejadoraPersona_BL.ActualizarPersona_BL(p1);
+                    ViewData["InfoEstado"] = "Se han actualizado " + filas + " filas";
 
-                //Volvemos a sacar la lista de personas actualizada para pasársela a la vista Listado
-                lista = ClsListadoPersonas_BL.listadoCompletoPersonas_BL();
+                    //Volvemos a sacar la lista de personas actualizada para pasársela a la vista Listado
+                    lista = ClsListadoPersonas_BL.listadoCompletoPersonas_BL();
+                }
+                catch (Exception e) { ViewData["InfoEstado"] = "No se pudo actualizar"; }
+
+                return View("Listado", lista);
             }
-            catch (Exception e) { ViewData["InfoEstado"] = "No se pudo actualizar"; }
-
-            return View("Listado", lista);
+            else
+            {
+                return View(p1);
+            }
         }
 
         public ActionResult Create()
@@ -100,19 +107,27 @@ namespace _07_CRUDPersonas_UI.Controllers
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(ClsPersona p1)
         {
-            int filas;
-            List<ClsPersona> lista = null;
-            try
+            if(ModelState.IsValid)
             {
-                filas = ClsManejadoraPersona_BL.CrearPersona_BL(p1);
-                ViewData["InfoEstado"] = "Se han creado " + filas + " filas";
+                int filas;
+                List<ClsPersona> lista = null;
+                try
+                {
+                    filas = ClsManejadoraPersona_BL.CrearPersona_BL(p1);
+                    ViewData["InfoEstado"] = "Se han creado " + filas + " filas";
 
-                //Volvemos a sacar la lista de personas actualizada para pasársela a la vista Listado
-                lista = ClsListadoPersonas_BL.listadoCompletoPersonas_BL();
+                    //Volvemos a sacar la lista de personas actualizada para pasársela a la vista Listado
+                    lista = ClsListadoPersonas_BL.listadoCompletoPersonas_BL();
+                }
+                catch (Exception e) { ViewData["InfoEstado"] = "No se pudo crear"; }
+
+                return View("Listado", lista);
             }
-            catch (Exception e) { ViewData["InfoEstado"] = "No se pudo crear"; }
-
-            return View("Listado", lista);
+            else
+            {
+                return View(p1);
+            }
+            
         }
     }
 }
