@@ -159,7 +159,7 @@ namespace DAL.Manejadoras
                 gestConexion.closeConnection(ref conexion);
             }
 
-            return filas;
+            return filas; 
         }
 
         public static int ActualizarPersona_DAL(ClsPersona p1)
