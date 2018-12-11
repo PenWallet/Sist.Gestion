@@ -9,12 +9,15 @@ function inicializaEventos() {
 function persona() {
     var llamada = new XMLHttpRequest();
     //llamada.open("GET", "/Home/Index");
-    llamada.open("GET", "https://apipennypersonas.azurewebsites.net/api/Personas/6");
+    llamada.open("GET", "https://apipennypersonas.azurewebsites.net/api/Personas/");
     llamada.onreadystatechange = function () {
         if (llamada.readyState < 4)
             document.getElementById("textouwu").innerHTML = "Cargando...";
-        else if (llamada.readyState == 4 && llamada.status == 200)
-            document.getElementById("textouwu").innerHTML = llamada.responseText;
+        else if (llamada.readyState == 4 && llamada.status == 200) {
+            var texto = llamada.responseText;
+            var data = JSON.parse(texto);
+            document.getElementById("textouwu").innerHTML = data[0].nombre;
+        }
     };
 
     //Mientras viene
