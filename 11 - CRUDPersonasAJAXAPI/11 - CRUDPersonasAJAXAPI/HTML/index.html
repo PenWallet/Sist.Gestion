@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="../JS/main.js"></script>
+    <script src="../JS/Entidades.js"></script>
+    <meta charset="utf-8" />
+    <title>CRUD Personas AJAX</title>
+</head>
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h4>CRUD de Personas AJAX desde la API</h4>
+                <p id="btnBorrar" title="Delete"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></p>
+                <div class="table-responsive">
+
+                    <table id="tablaPersonas" class="table table-bordred table-striped">
+
+                        <thead>
+                        <th><input type="checkbox" id="checkall" onclick="checkAll()"/></th>
+                        <th>Departamento</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Edit</th>
+                        </thead>
+                        <tbody id="tbodyPersonas"></tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
