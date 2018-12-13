@@ -8,22 +8,26 @@
     <title>CRUD Personas AJAX</title>
 </head>
 <body>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <div class="container">
         <div class="row">
 
             <div class="col-md-12">
                 <h4>CRUD de Personas AJAX desde la API</h4>
-                <p id="btnBorrar" title="Delete"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></p>
+                <p>
+                    <button title="Añadir" id="btnAnadir" class="btn btn-info btn-s"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button title="Okay" id="btnAceptar" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button>
+                    <button title="Nope" id="btnRechazar" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button title="Borrar" id="btnBorrar" class="btn btn-warning btn-s"><span class="glyphicon glyphicon-trash"></span></button>
+                </p>
+               
                 <div class="table-responsive">
 
                     <table id="tablaPersonas" class="table table-bordred table-striped">
 
                         <thead>
-                        <th><input type="checkbox" id="checkall" onclick="checkAll()"/></th>
+                        <th><input type="checkbox" id="checkall" onclick="checkAll()" /></th>
                         <th>Departamento</th>
-                        <th>ID</th>
+                        <th style="display: none;"></th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Fecha de nacimiento</th>

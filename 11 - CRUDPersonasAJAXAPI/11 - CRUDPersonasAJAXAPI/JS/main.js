@@ -3,6 +3,12 @@ window.onload = inicializaEventos;
 
 function inicializaEventos() {
     hideBtnBorrar();
+    hideBtnAceptar();
+    hideBtnRechazar();
+    document.getElementById("btnBorrar").addEventListener("click", borrarPersonasClick, false);
+    document.getElementById("btnAnadir").addEventListener("click", anadirPersona, false);
+    document.getElementById("btnAceptar").addEventListener("click", aceptarPersona, false);
+    document.getElementById("btnRechazar").addEventListener("click", rechazarPersona, false);
     cargarTabla();
 }
 
@@ -35,30 +41,40 @@ function cargarListado(data)
     var tr;
     for (var i = 0; i < data.length; i++)
     {
+        //Creamos el elemento table row (tr)
         tr = document.createElement("tr");
+
+        //También el elemento table data (td)
         var td = document.createElement("td");
+
+        //Y el checkbox para hacer el input
         var checkBox = document.createElement("input");
         checkBox.setAttribute("type", "checkbox");
         checkBox.setAttribute("class", "checkthis");
         checkBox.setAttribute("name", "checkBoxDelete");
         checkBox.setAttribute("id", data[i].idPersona);
         checkBox.addEventListener("change", checkBoxesChanged, false)
+
+        //Lo agregamos a td
         td.appendChild(checkBox);
+        //Y eso a tr
         tr.appendChild(td);
+
+        //Recorremos todas las filas de información e insertamos
         for (var prop in data[0])
         {
             td = document.createElement("td");
             var textoCelda = document.createTextNode(data[i][prop]);
             td.appendChild(textoCelda);
             if (prop == "idPersona")
-                td.style.display = "block";
+                td.style.display = "none";
             tr.appendChild(td);
         }
         //Agregamos el botón Edit, que viene a partir de este HTML:
         //<p title="Edit"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button></p>
         td = document.createElement("td");
         var p = document.createElement("p");
-        p.setAttribute("title", "Edit");
+        p.setAttribute("title", "Editar");
         var buttonEdit = document.createElement("button");
         buttonEdit.setAttribute("class", "btn btn-primary btn-xs");
         buttonEdit.setAttribute("name", "btnEdit");
@@ -66,7 +82,7 @@ function cargarListado(data)
         var span = document.createElement("span");
         span.setAttribute("class", "glyphicon glyphicon-pencil");
         buttonEdit.appendChild(span);
-        buttonEdit.addEventListener("click", prueba,false)
+        buttonEdit.addEventListener("click", function () { editPersona(buttonEdit.getAttribute("value")); }, false)
         p.appendChild(buttonEdit);
         td.appendChild(p);
         tr.appendChild(td);
@@ -74,19 +90,72 @@ function cargarListado(data)
     }
 }
 
-function hideBtnBorrar() {
-    var botonBorrar = document.getElementById("btnBorrar");
-    botonBorrar.style.display = "none";
+function editPersona(idPersona) {
+    alert(idPersona);
 }
 
-function showBtnBorrar() {
-    var botonBorrar = document.getElementById("btnBorrar");
-    botonBorrar.style.display = "block";
+function borrarPersonasClick() {
+    var listado = document.getElementsByName("checkBoxDelete");
+    var listadoId = new Array();
+    for (var i = 0; i < listado.length; i++) {
+        if (listado[i].checked) {
+            listadoId.push(listado[i].getAttribute("id"));
+        }
+    }
+
+    if (confirm(listadoId.length == 1 ? "¿Está seguro de que desea borrar este usuario?" : "¿Está seguro que desea borrar estos usuarios?")) {
+        borrarPersonas(listadoId);
+        alert(listadoId.length == 1 ? "Usuario borrado con éxito" : "Usuarios borrados con éxito")
+        hideBtnBorrar();
+    }
 }
 
-function prueba() {
-    showBtnBorrar();
+function borrarPersonas(listaID) {
+    for (var i = 0; i < listaID.length; i++) {
+        var llamada = new XMLHttpRequest();
+        llamada.open("DELETE", "https://apipennypersonas.azurewebsites.net/api/Personas/" + listaID[i]);
+
+        //Le damos la tarea de recargar la lista solo a la última llamada del listado de IDs
+        if (i == listaID.length - 1)
+        {
+            llamada.onreadystatechange = function () {
+                if (llamada.readyState == 4 && llamada.status == 200) {
+                    //CargarListado
+                    recargarListado();
+                }
+            };
+        }
+        
+
+        llamada.send();
+    }
 }
+
+function recargarListado() {
+    //Guarringoneando
+    document.getElementById("tbodyPersonas").innerHTML = "";
+    cargarTabla();
+}
+
+function anadirPersona() {
+    showBtnAceptar();
+    showBtnRechazar();
+}
+
+function aceptarPersona() {
+    hideBtnAceptar();
+    hideBtnRechazar();
+}
+
+function rechazarPersona() {
+    hideBtnAceptar();
+    hideBtnRechazar();
+}
+
+
+
+
+
 
 function checkBoxesChanged() {
     var arrayCB = document.getElementsByName("checkBoxDelete");
@@ -124,3 +193,32 @@ function checkAll() {
         hideBtnBorrar();
 }
 
+function hideBtnBorrar() {
+    var botonBorrar = document.getElementById("btnBorrar");
+    botonBorrar.style.display = "none";
+}
+
+function showBtnBorrar() {
+    var botonBorrar = document.getElementById("btnBorrar");
+    botonBorrar.style.display = "";
+}
+
+function hideBtnAceptar() {
+    var botonBorrar = document.getElementById("btnAceptar");
+    botonBorrar.style.display = "none";
+}
+
+function showBtnAceptar() {
+    var botonBorrar = document.getElementById("btnAceptar");
+    botonBorrar.style.display = "";
+}
+
+function hideBtnRechazar() {
+    var botonBorrar = document.getElementById("btnRechazar");
+    botonBorrar.style.display = "none";
+}
+
+function showBtnRechazar() {
+    var botonBorrar = document.getElementById("btnRechazar");
+    botonBorrar.style.display = "";
+}
