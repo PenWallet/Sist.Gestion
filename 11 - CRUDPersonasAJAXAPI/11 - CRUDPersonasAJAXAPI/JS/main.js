@@ -82,7 +82,7 @@ function cargarListado(data)
         var span = document.createElement("span");
         span.setAttribute("class", "glyphicon glyphicon-pencil");
         buttonEdit.appendChild(span);
-        buttonEdit.addEventListener("click", function () { editPersona(buttonEdit.getAttribute("value")); }, false)
+        buttonEdit.addEventListener("click", editPersona, false)
         p.appendChild(buttonEdit);
         td.appendChild(p);
         tr.appendChild(td);
@@ -90,8 +90,8 @@ function cargarListado(data)
     }
 }
 
-function editPersona(idPersona) {
-    alert(idPersona);
+function editPersona() {
+    alert(this.value);
 }
 
 function borrarPersonasClick() {
@@ -138,18 +138,49 @@ function recargarListado() {
 }
 
 function anadirPersona() {
+    // Buscamos el tBody
+    var table = document.getElementById("tbodyPersonas");
+    // Crear un elemento tr
+    var row = table.insertRow(0);
+    // Insertar una celda (elemento td)
+    var celda = row.insertCell(0);
+    // Add some text to the new cells:
+    celda.innerHTML = "";
+
+    for (var i = 1; i < 7; i++) {
+        celda = row.insertCell(i);
+        var input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("name", "txtDatos");
+        input.setAttribute("class", "form-control");
+        celda.appendChild(input);
+    }
+
+    //Celda de Edit
+    celda = row.insertCell(7);
+    celda.innerHTML = "";
+
     showBtnAceptar();
     showBtnRechazar();
+    hideBtnAnadir();
 }
 
 function aceptarPersona() {
+    var arrayDatos = document.getElementsByName("txtDatos");
+    for (var i = 0; i < arrayDatos.length; i++) {
+        alert(arrayDatos[i].value);
+    }
+    document.getElementById("tbodyPersonas").deleteRow(0);
     hideBtnAceptar();
     hideBtnRechazar();
+    showBtnAnadir();
 }
 
 function rechazarPersona() {
+    document.getElementById("tbodyPersonas").deleteRow(0);
     hideBtnAceptar();
     hideBtnRechazar();
+    showBtnAnadir();
 }
 
 
@@ -203,22 +234,32 @@ function showBtnBorrar() {
     botonBorrar.style.display = "";
 }
 
+function hideBtnAnadir() {
+    var botonAnadir = document.getElementById("btnAnadir");
+    botonAnadir.style.display = "none";
+}
+
+function showBtnAnadir() {
+    var botonAnadir = document.getElementById("btnAnadir");
+    botonAnadir.style.display = "";
+}
+
 function hideBtnAceptar() {
-    var botonBorrar = document.getElementById("btnAceptar");
-    botonBorrar.style.display = "none";
+    var botonAceptar = document.getElementById("btnAceptar");
+    botonAceptar.style.display = "none";
 }
 
 function showBtnAceptar() {
-    var botonBorrar = document.getElementById("btnAceptar");
-    botonBorrar.style.display = "";
+    var botonAceptar = document.getElementById("btnAceptar");
+    botonAceptar.style.display = "";
 }
 
 function hideBtnRechazar() {
-    var botonBorrar = document.getElementById("btnRechazar");
-    botonBorrar.style.display = "none";
+    var botonRechazar = document.getElementById("btnRechazar");
+    botonRechazar.style.display = "none";
 }
 
 function showBtnRechazar() {
-    var botonBorrar = document.getElementById("btnRechazar");
-    botonBorrar.style.display = "";
+    var botonRechazar = document.getElementById("btnRechazar");
+    botonRechazar.style.display = "";
 }
