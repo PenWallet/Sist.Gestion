@@ -107,6 +107,9 @@ function borrarPersonasClick() {
         borrarPersonas(listadoId);
         alert(listadoId.length == 1 ? "Usuario borrado con éxito" : "Usuarios borrados con éxito")
         hideBtnBorrar();
+        hideBtnAceptar();
+        hideBtnRechazar();
+        showBtnAnadir();
     }
 }
 
@@ -116,8 +119,7 @@ function borrarPersonas(listaID) {
         llamada.open("DELETE", "https://apipennypersonas.azurewebsites.net/api/Personas/" + listaID[i]);
 
         //Le damos la tarea de recargar la lista solo a la última llamada del listado de IDs
-        if (i == listaID.length - 1)
-        {
+        if (i == listaID.length - 1) {
             llamada.onreadystatechange = function () {
                 if (llamada.readyState == 4 && llamada.status == 200) {
                     //CargarListado
@@ -125,16 +127,10 @@ function borrarPersonas(listaID) {
                 }
             };
         }
-        
+
 
         llamada.send();
     }
-}
-
-function recargarListado() {
-    //Guarringoneando
-    document.getElementById("tbodyPersonas").innerHTML = "";
-    cargarTabla();
 }
 
 function anadirPersona() {
@@ -147,7 +143,15 @@ function anadirPersona() {
     // Add some text to the new cells:
     celda.innerHTML = "";
 
-    for (var i = 1; i < 7; i++) {
+    //Insertamos la celda de número (idDepartamento)
+    celda = row.insertCell(1);
+    var input = document.createElement("input");
+    input.setAttribute("type", "number");
+    input.setAttribute("name", "txtDatos");
+    input.setAttribute("class", "form-control");
+    celda.appendChild(input);
+
+    for (var i = 2; i < 7; i++) {
         celda = row.insertCell(i);
         var input = document.createElement("input");
         input.setAttribute("type", "text");
@@ -167,13 +171,34 @@ function anadirPersona() {
 
 function aceptarPersona() {
     var arrayDatos = document.getElementsByName("txtDatos");
-    for (var i = 0; i < arrayDatos.length; i++) {
-        alert(arrayDatos[i].value);
-    }
-    document.getElementById("tbodyPersonas").deleteRow(0);
-    hideBtnAceptar();
-    hideBtnRechazar();
-    showBtnAnadir();
+    var idDepartamento = arrayDatos[0].value;
+    var nombre = arrayDatos[1].value;
+    var apellidos = arrayDatos[2].value;
+    var fechaNac = arrayDatos[3].value;
+    var direccion = arrayDatos[4].value;
+    var telefono = arrayDatos[5].value;
+    var persona = new Persona(0, nombre, apellidos, fechaNac, direccion, telefono, idDepartamento);
+    var json = JSON.stringify(persona);
+
+    //Hacemos la llamada POST a la API
+    var llamada = new XMLHttpRequest();
+    llamada.open("POST", "https://apipennypersonas.azurewebsites.net/api/Personas/", true);
+    llamada.setRequestHeader("Content-Type", "application/json");
+    
+    llamada.onreadystatechange = function () {
+        if (llamada.readyState == 4 && llamada.status == 200) {
+            alert("¡Persona creada correctamente!");
+
+            //CargarListado
+            recargarListado();
+            
+            hideBtnAceptar();
+            hideBtnRechazar();
+            showBtnAnadir();
+        }
+    };
+
+    llamada.send(json);
 }
 
 function rechazarPersona() {
@@ -222,6 +247,12 @@ function checkAll() {
         showBtnBorrar();
     else
         hideBtnBorrar();
+}
+
+function recargarListado() {
+    //Guarringoneando
+    document.getElementById("tbodyPersonas").innerHTML = "";
+    cargarTabla();
 }
 
 function hideBtnBorrar() {
