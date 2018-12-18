@@ -5,10 +5,14 @@ function inicializaEventos() {
     hideBtnBorrar();
     hideBtnAceptar();
     hideBtnRechazar();
+    hideBtnAceptarEdit();
+    hideBtnRechazarEdit();
     document.getElementById("btnBorrar").addEventListener("click", borrarPersonasClick, false);
     document.getElementById("btnAnadir").addEventListener("click", anadirPersona, false);
     document.getElementById("btnAceptar").addEventListener("click", aceptarPersona, false);
     document.getElementById("btnRechazar").addEventListener("click", rechazarPersona, false);
+    document.getElementById("btnAceptarEdit").addEventListener("click", aceptarEditPersona, false);
+    document.getElementById("btnRechazarEdit").addEventListener("click", rechazarPersonaEdit, false);
     cargarTabla();
 }
 
@@ -46,12 +50,12 @@ function cargarListado(data)
 
         //También el elemento table data (td)
         var td = document.createElement("td");
-        td.setAttribute("name", "fila" + data[i].idPersona)
+        td.setAttribute("name", "fila:" + data[i].idPersona)
 
         //Y el checkbox para hacer el input
         var checkBox = document.createElement("input");
         checkBox.setAttribute("type", "checkbox");
-        checkBox.setAttribute("class", "checkthis");
+        checkBox.setAttribute("class", "form-check");
         checkBox.setAttribute("name", "checkBoxDelete");
         checkBox.setAttribute("id", data[i].idPersona);
         checkBox.addEventListener("change", checkBoxesChanged, false)
@@ -66,7 +70,7 @@ function cargarListado(data)
         {
             if (prop != "idPersona") {
                 td = document.createElement("td");
-                td.setAttribute("name", "fila" + data[i].idPersona)
+                td.setAttribute("name", "fila:" + data[i].idPersona)
                 var textoCelda = document.createTextNode(prop != "fechaNac" ? data[i][prop] : data[i][prop].split("T")[0]);
                 td.appendChild(textoCelda);
                 tr.appendChild(td);
@@ -76,7 +80,7 @@ function cargarListado(data)
         //Agregamos el botón Edit, que viene a partir de este HTML:
         //<p title="Edit"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button></p>
         td = document.createElement("td");
-        td.setAttribute("name", "fila" + data[i].idPersona)
+        td.setAttribute("name", "fila:" + data[i].idPersona)
         var p = document.createElement("p");
         p.setAttribute("title", "Editar");
         var buttonEdit = document.createElement("button");
@@ -95,9 +99,10 @@ function cargarListado(data)
 }
 
 function editPersona() {
-    var fila = "fila" + this.value;
+    var fila = "fila:" + this.value;
     var columnas = document.getElementsByName(fila);
     var arrayDatos = new Array();
+    document.getElementById("btnAceptarEdit").setAttribute("value", this.value);
 
     columnas[0].innerHTML = "";
     var idDepartamento = columnas[1].innerHTML; arrayDatos.push(idDepartamento);
@@ -127,6 +132,8 @@ function editPersona() {
         columnas[i].appendChild(input);
     }
 
+    showBtnAceptarEdit();
+    showBtnRechazarEdit();
     disableAllEditButtons();
 }
 
@@ -203,8 +210,11 @@ function anadirPersona() {
     showBtnAceptar();
     showBtnRechazar();
     hideBtnAnadir();
+    disableAllEditButtons();
 }
 
+//Si esCreacion == true, entonces estamos creando una nueva persona
+//Si esCreacion == false, entonces estamos actualizando
 function aceptarPersona() {
     if (checkPersonInfo()) {
         var arrayDatos = document.getElementsByName("txtDatos");
@@ -216,7 +226,7 @@ function aceptarPersona() {
         var telefono = arrayDatos[5].value;
         var persona = new Persona(0, nombre, apellidos, fechaNac, direccion, telefono, idDepartamento);
         var json = JSON.stringify(persona);
-
+        
         //Hacemos la llamada POST a la API
         var llamada = new XMLHttpRequest();
         llamada.open("POST", "https://apipennypersonas.azurewebsites.net/api/Personas/", true);
@@ -236,6 +246,42 @@ function aceptarPersona() {
         };
 
         llamada.send(json);
+        
+    }
+}
+
+function aceptarEditPersona() {
+    if (checkPersonInfo()) {
+        var arrayDatos = document.getElementsByName("txtDatos");
+        var idDepartamento = arrayDatos[0].value;
+        var nombre = arrayDatos[1].value;
+        var apellidos = arrayDatos[2].value;
+        var fechaNac = arrayDatos[3].value;
+        var direccion = arrayDatos[4].value;
+        var telefono = arrayDatos[5].value;
+        var persona = new Persona(this.value, nombre, apellidos, fechaNac, direccion, telefono, idDepartamento);
+        var json = JSON.stringify(persona);
+
+        //Hacemos la llamada PUT a la API
+        var llamada = new XMLHttpRequest();
+        llamada.open("PUT", "https://apipennypersonas.azurewebsites.net/api/Personas/");
+        llamada.setRequestHeader("Content-Type", "application/json");
+
+        llamada.onreadystatechange = function () {
+            if (llamada.readyState == 4 && llamada.status == 200) {
+                alert("¡Persona actualizada correctamente!");
+
+                //CargarListado
+                recargarListado();
+
+                hideBtnAceptarEdit();
+                hideBtnRechazarEdit();
+                showBtnAnadir();
+                enableAllEditButtons();
+            }
+        };
+
+        llamada.send(json);
     }
 }
 
@@ -244,6 +290,14 @@ function rechazarPersona() {
     hideBtnAceptar();
     hideBtnRechazar();
     showBtnAnadir();
+    enableAllEditButtons();
+}
+
+function rechazarPersonaEdit() {
+    recargarListado();
+    hideBtnRechazarEdit();
+    hideBtnAceptarEdit();
+    enableAllEditButtons();
 }
 
 function checkPersonInfo() {
@@ -282,6 +336,10 @@ function checkPersonInfo() {
     }
     else if (telefono == "") {
         alert("¡El teléfono no puede estar vacío!");
+        esValido = false;
+    }
+    else if (!/(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/.test(telefono)) {
+        alert("¡El teléfono no se corresponde a un número ESPAÑOL!");
         esValido = false;
     }
 
@@ -369,6 +427,26 @@ function hideBtnRechazar() {
 
 function showBtnRechazar() {
     var botonRechazar = document.getElementById("btnRechazar");
+    botonRechazar.style.display = "";
+}
+
+function hideBtnAceptarEdit() {
+    var botonAceptar = document.getElementById("btnAceptarEdit");
+    botonAceptar.style.display = "none";
+}
+
+function showBtnAceptarEdit() {
+    var botonAceptar = document.getElementById("btnAceptarEdit");
+    botonAceptar.style.display = "";
+}
+
+function hideBtnRechazarEdit() {
+    var botonRechazar = document.getElementById("btnRechazarEdit");
+    botonRechazar.style.display = "none";
+}
+
+function showBtnRechazarEdit() {
+    var botonRechazar = document.getElementById("btnRechazarEdit");
     botonRechazar.style.display = "";
 }
 
