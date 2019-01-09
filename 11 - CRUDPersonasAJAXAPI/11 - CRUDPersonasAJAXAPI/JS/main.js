@@ -18,7 +18,7 @@ function inicializaEventos() {
 
 function cargarTabla() {
     var llamada = new XMLHttpRequest();
-    llamada.open("GET", "https://apipennypersonas.azurewebsites.net/api/Personas/");
+    llamada.open("GET", "https://apipennypersonas2.azurewebsites.net/api/Personas/");
 
     llamada.onreadystatechange = function ()
     {
@@ -57,7 +57,7 @@ function cargarListado(data)
         checkBox.setAttribute("type", "checkbox");
         checkBox.setAttribute("class", "form-check");
         checkBox.setAttribute("name", "checkBoxDelete");
-        checkBox.setAttribute("id", data[i].idPersona);
+        checkBox.setAttribute("id", "chkBox:"+data[i].idPersona);
         checkBox.addEventListener("change", checkBoxesChanged, false)
 
         //Lo agregamos a td
@@ -135,6 +135,7 @@ function editPersona() {
     showBtnAceptarEdit();
     showBtnRechazarEdit();
     disableAllEditButtons();
+    disableAllCheckBoxes();
 }
 
 function borrarPersonasClick() {
@@ -159,7 +160,7 @@ function borrarPersonasClick() {
 function borrarPersonas(listaID) {
     for (var i = 0; i < listaID.length; i++) {
         var llamada = new XMLHttpRequest();
-        llamada.open("DELETE", "https://apipennypersonas.azurewebsites.net/api/Personas/" + listaID[i]);
+        llamada.open("DELETE", "https://apipennypersonas2.azurewebsites.net/api/Personas/" + listaID[i].split(":")[1]);
 
         //Le damos la tarea de recargar la lista solo a la última llamada del listado de IDs
         if (i == listaID.length - 1) {
@@ -211,6 +212,7 @@ function anadirPersona() {
     showBtnRechazar();
     hideBtnAnadir();
     disableAllEditButtons();
+    disableAllCheckBoxes();
 }
 
 //Si esCreacion == true, entonces estamos creando una nueva persona
@@ -229,7 +231,7 @@ function aceptarPersona() {
         
         //Hacemos la llamada POST a la API
         var llamada = new XMLHttpRequest();
-        llamada.open("POST", "https://apipennypersonas.azurewebsites.net/api/Personas/", true);
+        llamada.open("POST", "https://apipennypersonas2.azurewebsites.net/api/Personas/", true);
         llamada.setRequestHeader("Content-Type", "application/json");
 
         llamada.onreadystatechange = function () {
@@ -242,6 +244,7 @@ function aceptarPersona() {
                 hideBtnAceptar();
                 hideBtnRechazar();
                 showBtnAnadir();
+                enableAllCheckBoxes();
             }
         };
 
@@ -264,7 +267,7 @@ function aceptarEditPersona() {
 
         //Hacemos la llamada PUT a la API
         var llamada = new XMLHttpRequest();
-        llamada.open("PUT", "https://apipennypersonas.azurewebsites.net/api/Personas/");
+        llamada.open("PUT", "https://apipennypersonas2.azurewebsites.net/api/Personas/");
         llamada.setRequestHeader("Content-Type", "application/json");
 
         llamada.onreadystatechange = function () {
@@ -278,6 +281,7 @@ function aceptarEditPersona() {
                 hideBtnRechazarEdit();
                 showBtnAnadir();
                 enableAllEditButtons();
+                enableAllCheckBoxes();
             }
         };
 
@@ -291,6 +295,7 @@ function rechazarPersona() {
     hideBtnRechazar();
     showBtnAnadir();
     enableAllEditButtons();
+    enableAllCheckBoxes();
 }
 
 function rechazarPersonaEdit() {
@@ -298,6 +303,7 @@ function rechazarPersonaEdit() {
     hideBtnRechazarEdit();
     hideBtnAceptarEdit();
     enableAllEditButtons();
+    enableAllCheckBoxes();
 }
 
 function checkPersonInfo() {
@@ -462,4 +468,23 @@ function enableAllEditButtons() {
     for (var i = 0; i < botones.length; i++) {
         botones[i].disabled = false;
     }
+}
+
+//No funciona
+function disableAllCheckBoxes() {
+    var checkboxes = document.getElementsByName("checkBoxDelete");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].disabled = true;
+    }
+
+    document.getElementById("checkall").disabled = true;
+}
+
+function enableAllCheckBoxes() {
+    var checkboxes = document.getElementsByName("checkBoxDelete");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].disabled = false;
+    }
+
+    document.getElementById("checkall").disabled = false;
 }
